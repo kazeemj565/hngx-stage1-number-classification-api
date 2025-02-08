@@ -10,7 +10,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for all origins (adjust as needed)
+# Enable CORS for all origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -42,7 +42,7 @@ async def classify_number(number: str = Query(..., description="The number to cl
     
     dsum = digit_sum(n)
     
-    # Get fun fact from the Numbers API (e.g., http://numbersapi.com/371?json)
+    # Get fun fact from the Numbers API
     fun_fact = ""
     try:
         async with httpx.AsyncClient() as client:
