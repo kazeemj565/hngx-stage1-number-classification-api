@@ -24,7 +24,6 @@ app.add_middleware(
 @app.get("/api/classify-number", status_code=200)
 async def classify_number(number: str = Query(..., description="The number to classify")):
 
-    # Validate input: must be an integer.
     try:
         n = int(number)
     except ValueError:
@@ -48,7 +47,7 @@ async def classify_number(number: str = Query(..., description="The number to cl
     try:
         async with httpx.AsyncClient() as client:
             url = f"http://numbersapi.com/{n}/math?json"
-            response = await client.get(url, timeout=0.3)
+            response = await client.get(url)
             if response.status_code == 200:
                 data = response.json()
                 fun_fact = data.get("text", "No fun fact available.")
