@@ -28,13 +28,7 @@ def is_perfect(n: int) -> bool:
 
 def is_armstrong(n: int) -> bool:
     """Return True if n is an Armstrong number."""
-    # if n < 0:
-    #     return False
-    # digits = str(n)
-    # num_digits = len(digits)
-    # armstrong_sum = sum(int(d) ** num_digits for d in digits)
-    # return armstrong_sum == n
-
+   
     digits = str(abs(n))
     num_digits = len(digits)
     armstrong_sum = sum(int(digit) ** num_digits for digit in digits)

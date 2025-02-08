@@ -34,7 +34,7 @@ async def classify_number(number: str = Query(..., description="The number to cl
     prime = is_prime(n)
     perfect = is_perfect(n)
     armstrong = is_armstrong(n)
-    parity = "even" if n % 2 == 0 else "odd"
+    parity = "even" if abs(n) % 2 == 0 else "odd"
     
     properties = []
     if armstrong:
@@ -48,7 +48,7 @@ async def classify_number(number: str = Query(..., description="The number to cl
     try:
         async with httpx.AsyncClient() as client:
             url = f"http://numbersapi.com/{n}/math?json"
-            response = await client.get(url)
+            response = await client.get(url, timeout=0.3)
             if response.status_code == 200:
                 data = response.json()
                 fun_fact = data.get("text", "No fun fact available.")
